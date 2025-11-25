@@ -1,0 +1,284 @@
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: #f8f9fc;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+/* Thanh điều hướng */
+.navbar {
+  display: flex;
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  z-index: 1000;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 10px 30px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.logo span {
+  font-size: 13px;
+  color: #777;
+  display: block;
+}
+
+/* .menu button {
+  background: transparent;
+  border: none;
+  font-weight: bold;
+  padding: 8px 15px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.3s;
+} */
+
+.menu {
+  display: flex;
+  /* xếp các phần tử theo hàng ngang */
+  justify-content: space-between;
+  /* đẩy 2 nhóm về 2 đầu: trái - phải */
+  align-items: center;
+  /* căn giữa theo chiều dọc */
+  background: #fff;
+  padding: 10px 20px;
+  border-bottom: 1px solid #eee;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.menu-left {
+  display: flex;
+  /* để các nút trong nhóm nằm ngang */
+  gap: 5px;
+  /* khoảng cách giữa các nút */
+}
+
+.menu button {
+  background: transparent;
+  border: none;
+  font-weight: bold;
+  padding: 8px 15px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+
+.menu button.active {
+  background: #000;
+  color: white;
+}
+
+.menu button:hover {
+  background: #acacac;
+}
+
+
+
+.user {
+  font-weight: bold;
+  margin-left: 10px;
+  cursor: pointer;
+  color: #333;
+  transition: color 0.2s;
+}
+
+.user:hover {
+  color: rgb(249, 80, 80);
+  /* đổi màu khi rê chuột để người dùng biết có thể click */
+}
+
+.container {
+  max-width: 75%;
+  margin: 100px auto 30px auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+}
+
+
+
+
+/* Card */
+.card {
+  background: #fff;
+  padding: 25px;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Search */
+.search {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0 20px 0;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+/* Table */
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+/* Row hover */
+tbody tr:hover {
+  background: #f0f6ff;
+}
+
+/* Badge */
+.badge {
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: bold;
+  min-width: 90px;
+  white-space: nowrap;
+  /* Không xuống dòng */
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
+.badge.success {
+  background: #19c37d;
+  color: #fff;
+}
+
+.badge.danger {
+  background: #ff4b4b;
+  color: #fff;
+}
+
+/* Buttons */
+.btn-register {
+  background: #020617;
+  color: white;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  min-width: 90px;
+}
+
+.btn-register:hover {
+  opacity: .8;
+}
+
+.btn-register.disabled {
+  background: gray;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+td i {
+  margin-right: 6px;
+  display: inline-block;
+  vertical-align: middle;
+  color: #555;
+}
+
+.btn-register i {
+  margin-right: 4px;
+}
+
+.table-wrapper td i {
+  margin-right: 6px;
+  /* icon cách chữ một chút */
+  display: inline-block;
+  /* đảm bảo icon đứng cùng dòng */
+  vertical-align: middle;
+  /* căn giữa icon với chữ */
+}
+
+
+
+
+.btn-register.cancel {
+  background: #dc3545;
+  color: #fff;
+  border: none;
+  min-width: 90px;
+}
+
+.btn-register.cancel:hover {
+  background: #b42735;
+}
+
+/* --- BUTTON STYLES & EFFECTS --- */
+
+/* Nút Đăng ký (Mặc định) */
+.btn-action {
+  background-color: #0f172a;
+  /* Màu đen xanh */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  min-width: 90px;
+}
+
+/* Nút Hủy (Màu đỏ) */
+.btn-cancel {
+  background-color: #ef4444;
+  /* Màu đỏ */
+  color: white;
+}
+
+/* Hiệu ứng khi di chuột vào (Hover): Nút nổi lên nhẹ */
+.btn-action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+  background-color: #1e293b;
+  /* Sáng hơn chút */
+}
+
+.btn-cancel:hover {
+  background-color: #dc2626;
+  /* Đỏ đậm hơn */
+}
+
+/* Hiệu ứng khi bấm xuống (Active): Nút lún xuống */
+.btn-action:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Trạng thái Disabled (Không bấm được) */
+.btn-action:disabled {
+  background-color: #cbd5e1;
+  color: white;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}

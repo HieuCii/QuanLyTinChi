@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đăng nhập - Hệ thống Đăng ký Tín chỉ</title>
+
+  <link rel="stylesheet" href="public/assets/css/style.css">
+</head>
+
+<body>
+  <div class="container">
+    <!-- Đầu trang -->
+    <div class="login-box">
+      <div class="icon">🎓</div>
+      <h2>Hệ thống Đăng ký Tín chỉ</h2>
+      <p class="school">Trường Đại học UNETI</p>
+
+      <!-- Form đăng nhập -->
+      <div class="form">
+        <label for="ma">Tài khoản</label>
+        <input type="text" id="ma" placeholder="Nhập tài khoản">
+
+        <label for="matkhau">Mật khẩu</label>
+        <input type="password" id="matkhau" placeholder="Nhập mật khẩu">
+
+        <button type="button" class="login-btn" onclick="login()">Đăng nhập</button>
+      </div>
+
+      <div class="demo">
+        <p><i>Hệ thống dành cho Sinh viên, Giảng viên và Quản trị viên.</i></p>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-overlay">
+    <div id="toast"></div>
+  </div>
+
+  <script src="public/assets/js/auth-test.js"></script>
+</body>
+
+</html>

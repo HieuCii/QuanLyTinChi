@@ -1,0 +1,313 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: #f8f9fc;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 10px 30px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.logo span {
+  font-size: 13px;
+  color: #777;
+  display: block;
+}
+
+.menu {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 5px;
+}
+
+.menu-left {
+  display: flex;
+  gap: 5px;
+}
+
+.menu button {
+  background: transparent;
+  border: none;
+  font-weight: bold;
+  padding: 8px 15px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.menu button.active {
+  background: #000;
+  color: white;
+}
+
+.menu button:hover {
+  background: #acacac;
+}
+
+
+/* MAIN CONTAINER */
+.container {
+  max-width: 70%;
+  margin: 100px auto 30px auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+}
+
+/* SCHEDULE */
+.schedule-wrapper {
+  width: 100%;
+  margin-top: 10px;
+  padding: 20px 10px;
+}
+
+.schedule-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.cell {
+  background: #f3f4f6;
+  border-radius: 12px;
+  padding: 18px;
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 15px;
+}
+
+.cell.header {
+  background: #d9d9e6;
+  font-weight: 600;
+  text-align: center;
+}
+
+.cell.time {
+  font-weight: 600;
+}
+
+/* COLORS */
+.blue {
+  background: #d7e7ff;
+  border-left: 6px solid #5b8cff;
+}
+
+.orange {
+  background: #ffe4c2;
+  border-left: 6px solid #ffb85c;
+}
+
+.cyan {
+  background: #c9f1f5;
+  border-left: 6px solid #3dbccd;
+}
+
+.pink {
+  background: #ffd5e8;
+  border-left: 6px solid #ff6fa6;
+}
+
+/* ACTIVE CLASS - môn đang học */
+.active-class {
+  animation: pulse 1.3s infinite;
+  border: 2px solid #ff3b5f;
+  background: #ffe3ea !important;
+  position: relative;
+}
+
+.active-class::after {
+  content: "Đang học";
+  font-size: 11px;
+  background: #ff3b5f;
+  color: white;
+  padding: 3px 6px;
+  border-radius: 6px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 rgba(255, 0, 80, 0.0);
+  }
+
+  100% {
+    box-shadow: 0 0 18px rgba(255, 0, 80, 0.35);
+  }
+}
+
+/* LIST */
+.class-list-box {
+  margin-top: 30px;
+  background: #f5f5f8;
+  padding: 22px;
+  border-radius: 14px;
+}
+
+.class-list li {
+  display: flex;
+  gap: 6px;
+  margin: 4px 0;
+}
+
+/* DOT COLORS */
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.c-blue {
+  background: #8eb6ff;
+}
+
+.c-green {
+  background: #a7e6a2;
+}
+
+.c-purple {
+  background: #d6b8ff;
+}
+
+.c-orange {
+  background: #ffc88b;
+}
+
+.c-pink {
+  background: #ffb4c9;
+}
+
+.c-cyan {
+  background: #9ee9f1;
+}
+
+/* STATS */
+.stats-box {
+  margin-top: 25px;
+  display: flex;
+  gap: 15px;
+}
+
+.stat {
+  flex: 1;
+  background: white;
+  border: 1px solid #e7e7e7;
+  border-radius: 14px;
+  padding: 18px;
+  text-align: center;
+}
+
+.stat .value {
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.stat .label {
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+.logout-btn {
+  font-weight: bold;
+  margin-left: 10px;
+  cursor: pointer;
+  color: #333;
+  transition: color 0.2s;
+}
+/* ... (Giữ nguyên code cũ) ... */
+
+/* Thêm Class cho môn học bị ĐÓNG/HỦY */
+.cell.class.closed-class {
+    background-color: #e0e0e0 !important; /* Màu xám */
+    border-left-color: #757575 !important;
+    color: #757575 !important;
+    opacity: 0.8;
+}
+
+.cell.class.closed-class b {
+    color: #424242 !important;
+    text-decoration: line-through; /* Gạch ngang tên môn */
+}
+
+/* Tag cảnh báo nhỏ trong ô */
+.closed-tag {
+    background: #616161;
+    color: white;
+    font-size: 10px;
+    padding: 2px 5px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 3px;
+}
+/* --- PHÂN LOẠI MÔN HỌC --- */
+
+/* 1. Lý thuyết: Màu Xanh */
+.cell.class.type-theory {
+    background-color: #e3f2fd;
+    border-left: 4px solid #2196f3;
+    color: #0d47a1;
+}
+
+/* 2. Thực hành: Màu Cam */
+.cell.class.type-practice {
+    background-color: #fff3e0;
+    border-left: 4px solid #ff9800;
+    color: #e65100;
+}
+
+/* 3. Lớp ĐANG DIỄN RA (Active) */
+/* Yêu cầu: Không hiện màu nhận diện nữa -> Chuyển về nền trắng, viền đỏ */
+.cell.class.happening-now {
+    background-color: #ffffff !important; /* Xóa màu nền cũ */
+    border: 2px solid #ff1744 !important; /* Viền đỏ */
+    color: #d50000 !important;
+    position: relative;
+    box-shadow: 0 0 10px rgba(255, 23, 68, 0.3);
+    animation: pulse 2s infinite;
+}
+
+/* Badge "Đang học" */
+.cell.class.happening-now::after {
+    content: '🔴 ĐANG HỌC';
+    position: absolute;
+    top: -10px; right: 10px;
+    background: #ff1744;
+    color: white;
+    font-size: 10px; font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 23, 68, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(255, 23, 68, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 23, 68, 0); }
+}

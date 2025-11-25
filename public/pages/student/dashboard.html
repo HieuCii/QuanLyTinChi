@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Sinh viên | Đăng ký Tín chỉ</title>
+
+  <link rel="stylesheet" href="../../assets/css/student.css">
+  <link rel="stylesheet" href="../../assets/css/dangkymon.css">
+  <link rel="stylesheet" href="../../assets/css/lichhoc.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    /* CSS nội tuyến giữ nguyên để chạy demo cho đẹp */
+    .tab-content {
+      display: none;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all .35s ease;
+    }
+
+    .tab-content.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .tab-btn.active {
+      background: #007bff !important;
+      color: white !important;
+    }
+
+    /* Menu styles */
+    nav.menu {
+      display: flex;
+      padding: 10px 20px;
+      background: #fff;
+      border-bottom: 1px solid #eee;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav .menu-left button {
+      padding: 10px 18px;
+      margin-right: 10px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      background: #f0f0f0;
+      font-size: 15px;
+    }
+
+    nav .menu-left button:hover {
+      background: #e5e5e5;
+    }
+
+    .logout-btn button {
+      border: none;
+      background: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: #333;
+    }
+
+    .logout-btn button:hover {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Thanh điều hướng -->
+  <header class="navbar">
+    <div class="logo">
+      🎓 Hệ thống Đăng ký Tín chỉ
+      <span>Trường Đại học X</span>
+    </div>
+
+    <nav class="menu">
+      <div class="menu-left">
+        <button class="tab-btn active" data-tab="info">Thông tin cá nhân</button>
+        <button class="tab-btn" data-tab="register">Đăng ký môn học</button>
+        <button class="tab-btn" data-tab="schedule">Lịch học</button>
+      </div>
+      <div class="logout-btn">
+        <button class="fa-solid fa-right-from-bracket" onclick="logout()" title="Đăng xuất"></button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section id="info" class="tab-content active">
+      <section class="info-card">
+        <h3>Thông tin Sinh viên</h3>
+        <p class="desc">Thông tin cá nhân và học tập</p>
+        <div class="info-grid">
+
+          <div class="col">
+            <h4>Thông tin cá nhân</h4>
+            <p><i class="fa-regular fa-user"></i> Họ và tên: <b>Nguyễn Văn A</b></p>
+            <p><i class="fa-solid fa-id-card"></i> Mã sinh viên: <b>SV001</b></p>
+            <p><i class="fa-regular fa-envelope"></i> Email: <b>sv001@university.edu.vn</b></p>
+            <p><i class="fa-solid fa-phone"></i> Số điện thoại: <b>0900000000</b></p>
+          </div>
+          <div class="col">
+            <h4>Thông tin học tập</h4>
+            <p><i class="fa-solid fa-building-columns"></i> Ngành học: <b>Khoa học Máy tính</b></p>
+            <p><i class="fa-solid fa-graduation-cap"></i> Khóa học: <b>K2022</b></p>
+            <p><i class="fa-solid fa-chart-line"></i> Điểm trung bình (GPA): <b class="highlight">3.20</b></p>
+            <p><i class="fa-solid fa-book"></i> Trạng thái: <span class="status">Đang học</span></p>
+          </div>
+        </div>
+      </section>
+      <!-- Thành tích học tập -->
+      <section class="stats">
+        <h3>Thành tích học tập</h3>
+        <p class="desc">Tổng quan về kết quả học tập</p>
+        <div class="stat-box">
+          <div class="item">
+            <h2>3.20</h2>
+            <p>GPA</p>
+          </div>
+          <div class="item">
+            <h2>60</h2>
+            <p>Tín chỉ đã tích lũy</p>
+          </div>
+          <div class="item">
+            <h2>140</h2>
+            <p>Tín chỉ yêu cầu</p>
+          </div>
+          <div class="item">
+            <h2>43%</h2>
+            <p>Hoàn thành</p>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section id="register" class="tab-content">
+      <section class="card">
+        <h2>Đăng ký Môn học</h2>
+        <p>Chọn lớp học bạn muốn đăng ký trong học kỳ này.</p>
+
+        <input type="text" class="search" placeholder="🔎 Tìm kiếm môn học theo tên, mã môn, hoặc giảng viên..."
+          id="searchInput">
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Mã môn</th>
+                <th>Tên môn học</th>
+                <th>Tín chỉ</th>
+                <th>Giảng viên</th>
+                <th>Lịch học</th>
+                <th>Phòng</th>
+                <th>Sĩ số</th>
+                <th>Trạng thái</th>
+                <th>Thao tác</th>
+              </tr>
+            </thead>
+
+            <tbody id="courseTable">
+              <tr>
+                <td>CS101</td>
+                <td>Nhập môn Khoa học Máy tính</td>
+                <td>3</td>
+                <td>TS. Nguyễn Văn A</td>
+                <td><i class="fa-regular fa-clock"></i> Thứ 2, Thứ 4 (7:00-9:00)</td>
+                <td><i class="fa-solid fa-location-dot"></i> A101</td>
+                <!-- <td><i class="fa-solid fa-users"></i> 45/60</td> -->
+                <td><i class="fa-solid fa-users"></i> <span class="slot">45</span>/60</td>
+                <td><span class="badge success">Còn chỗ</span></td>
+                <td><button class="btn-register">Đăng ký</button></td>
+              </tr>
+
+              <tr>
+                <td>CS201</td>
+                <td>Cấu trúc Dữ liệu và Giải thuật</td>
+                <td>4</td>
+                <td>PGS.TS. Trần Thị B</td>
+                <td><i class="fa-regular fa-clock"></i> Thứ 3, Thứ 5 (9:00-11:00)</td>
+                <td><i class="fa-solid fa-location-dot"></i> B205</td>
+                <!-- <td><i class="fa-solid fa-users"></i> 50/50</td> -->
+                <td><i class="fa-solid fa-users"></i> <span class="slot">50</span>/50</td>
+                <td><span class="badge danger">Đầy</span></td>
+                <td><button class="btn-register disabled">Đăng ký</button></td>
+                </td>
+              </tr>
+            </tbody>
+
+
+          </table>
+        </div>
+      </section>
+    </section>
+
+    <section id="schedule" class="tab-content">
+      <div class="schedule-wrapper">
+        <h2>Lịch học</h2>
+        <p>Thời khóa biểu các lớp học đã đăng ký</p>
+
+        <div class="schedule-grid">
+    <div class="cell header">Ca học</div>
+    <div class="cell header">Thứ 2</div>
+    <div class="cell header">Thứ 3</div>
+    <div class="cell header">Thứ 4</div>
+    <div class="cell header">Thứ 5</div>
+    <div class="cell header">Thứ 6</div>
+    <div class="cell header">Thứ 7</div>
+
+    <div class="cell time"><b>SÁNG</b><br><small>(7:00 - 11:00)</small></div>
+    
+    <div class="cell empty" id="t2-sang"></div>
+    <div class="cell empty" id="t3-sang"></div>
+    <div class="cell empty" id="t4-sang"></div>
+    <div class="cell empty" id="t5-sang"></div>
+    <div class="cell empty" id="t6-sang"></div>
+    <div class="cell empty" id="t7-sang"></div>
+
+    <div class="cell time"><b>CHIỀU</b><br><small>(13:00 - 17:00)</small></div>
+
+    <div class="cell empty" id="t2-chieu"></div>
+    <div class="cell empty" id="t3-chieu"></div>
+    <div class="cell empty" id="t4-chieu"></div>
+    <div class="cell empty" id="t5-chieu"></div>
+    <div class="cell empty" id="t6-chieu"></div>
+    <div class="cell empty" id="t7-chieu"></div>
+</div>
+      </div>
+
+     <div class="class-list-box">
+    <h3>Lớp học đang học (Lịch chính thức):</h3>
+    <ul class="class-list" id="class-list-container">
+        </ul>
+</div>
+
+<div class="stats-box">
+  <div class="stat">
+    <div class="value" id="stat-count">0</div>
+    <div class="label">Lớp học</div>
+  </div>
+  <div class="stat">
+    <div class="value" id="stat-sessions">0</div>
+    <div class="label">Buổi học/tuần</div>
+  </div>
+  <div class="stat">
+    <div class="value" id="stat-days">0</div>
+    <div class="label">Ngày học/tuần</div>
+  </div>
+</div>
+    </section>
+  </main>
+
+  <script src="../../assets/js/student.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,8 @@
+{
+  "name": "QuanLyTinChi",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/HieuCii/QuanLyTinChi.git",
+  "author": "Nguyễn Trung Hiếu <trunghieu0101nam@gmail.com>",
+  "license": "MIT"
+}

@@ -1,0 +1,148 @@
+/* Nền */
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(to bottom right, #e9f0ff, #f4f7ff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* Khung đăng nhập */
+.login-box {
+  background: white;
+  width: 380px;
+  padding: 30px 40px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Icon */
+.icon {
+  font-size: 50px;
+  color: #2f60ff;
+  margin-bottom: 10px;
+}
+
+/* Tiêu đề */
+h2 {
+  margin: 0;
+  font-size: 20px;
+  color: #222;
+}
+
+.school {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+
+/* Thanh trượt nền trắng */
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  /* Vì có 2 tab nên mỗi bên chiếm 50% */
+  height: 100%;
+  background: rgb(205, 203, 203);
+  border-radius: 25px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  /* Hiệu ứng trượt mượt */
+  z-index: 1;
+  /* Đặt dưới nút chữ */
+}
+
+/* Input */
+.form {
+  text-align: left;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  margin-top: 10px;
+  color: #222;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: none;
+  border-radius: 8px;
+  background: #f2f2f5;
+  outline: none;
+  font-size: 14px;
+}
+
+/* Nút đăng nhập */
+.login-btn {
+  margin-top: 20px;
+  width: 100%;
+  background: #000014;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login-btn:hover {
+  background: #2f60ff;
+}
+
+/* Dòng demo */
+.demo {
+  font-size: 13px;
+  color: #777;
+  margin-top: 20px;
+  line-height: 1.5;
+}
+
+/* Overlay mờ nền */
+#toast-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: block;
+
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: all .25s ease-in-out;
+}
+
+/* Hộp thông báo */
+#toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: white;
+  padding: 18px 26px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  transform: scale(.8);
+  opacity: 0;
+  transition: all .25s ease;
+}
+
+/* Thông báo thành công */
+.toast-success {
+  border-left: 5px solid #22c55e;
+  color: #22c55e;
+}
+
+/* Thông báo lỗi */
+.toast-error {
+  border-left: 5px solid #ef4444;
+  color: #ef4444;
+}
