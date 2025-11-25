@@ -73,15 +73,15 @@ function login() {
     setTimeout(() => {
       if (user === "admin") {
         // Chuyển đến thư mục admin
-        window.location.href = "pages/admin/dashboard.html";
+        window.location.href = "public/pages/admin/dashboard.html";
       }
       else if (user.substring(0, 2).toUpperCase() === "GV") {
         // Chuyển đến thư mục giảng viên
-        window.location.href = "pages/teacher/dashboard.html";
+        window.location.href = "public/pages/teacher/dashboard.html";
       }
       else if (user.substring(0, 2).toUpperCase() === "SV") {
         // Chuyển đến thư mục sinh viên
-        window.location.href = "pages/student/dashboard.html";
+        window.location.href = "public/pages/student/dashboard.html";
       }
       else {
         showToast("Tài khoản không xác định được quyền hạn!", "error");
