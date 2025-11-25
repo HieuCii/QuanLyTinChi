@@ -365,5 +365,5 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function logout() {
-  if (confirm("Đăng xuất?")) { localStorage.removeItem("currentUser"); window.location.href = "../../../index.html"; }
+  if (confirm("Đăng xuất?")) { localStorage.removeItem("currentUser"); window.location.href = "/QuanLyTinChi/index.html"; }
 }
