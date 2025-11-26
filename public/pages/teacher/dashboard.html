@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giảng viên | Hệ thống tín chỉ</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+  <!-- css -->
+  <link rel="stylesheet" href="../../assets/css/teacher.css">
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo">
+      🎓 Hệ thống Đăng ký Tín chỉ
+      <span>Trường Đại học X</span>
+    </div>
+
+    <nav class="menu">
+      <div class="menu-left">
+        <button class="tab-btn active" data-target="info">Thông tin cá nhân</button>
+        <button class="tab-btn" data-target="courses">Môn học phụ trách</button>
+        <button class="tab-btn" data-target="schedule">Lịch giảng dạy</button>
+      </div>
+      <div class="logout-btn">
+        <button class="fa-solid fa-right-from-bracket" onclick="logout()" title="Đăng xuất"></button>
+      </div>
+
+    </nav>
+
+  </header>
+
+  <main class="container">
+
+    <!-- TAB 1 -->
+    <section class="tab active" id="info">
+      <h3>Thông tin Giảng viên</h3>
+      <div class="info-grid">
+        <div class="col">
+          <p><i class="fa-regular fa-user"></i> Họ và tên: <b>Trần Thị Mai Chi</b></p>
+          <p><i class="fa-solid fa-id-card"></i> Mã giảng viên: <b>GV001</b></p>
+          <p><i class="fa-regular fa-envelope"></i> Email: <b>gv001@university.edu.vn</b></p>
+          <p><i class="fa-solid fa-phone"></i> Số điện thoại: <b>0900000000</b></p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TAB 2 -->
+    <section class="tab" id="courses">
+      <h3>Môn học phụ trách</h3>
+      <div id="courses"></div>
+    </section>
+
+    <!-- TAB 3 -->
+    <section class="tab" id="schedule">
+      <div class="schedule-wrapper">
+        <h2>Lịch giảng dạy</h2>
+        <p class="sub">Thời khóa biểu các lớp đang giảng dạy</p>
+
+        <div class="schedule-grid">
+          <!-- HEADER -->
+          <div class="cell header">Ca học</div>
+          <div class="cell header">Thứ 2</div>
+          <div class="cell header">Thứ 3</div>
+          <div class="cell header">Thứ 4</div>
+          <div class="cell header">Thứ 5</div>
+          <div class="cell header">Thứ 6</div>
+          <div class="cell header">Thứ 7</div>
+
+          <!-- SÁNG -->
+          <div class="cell time">
+            <b>SÁNG</b>
+            <small>7:00 - 11:00</small>
+          </div>
+
+          <div class="cell empty" id="t2-sang"></div>
+          <div class="cell empty" id="t3-sang"></div>
+          <div class="cell empty" id="t4-sang"></div>
+          <div class="cell empty" id="t5-sang"></div>
+          <div class="cell empty" id="t6-sang"></div>
+          <div class="cell empty" id="t7-sang"></div>
+
+          <!-- CHIỀU -->
+          <div class="cell time">
+            <b>CHIỀU</b>
+            <small>13:00 - 17:00</small>
+          </div>
+
+          <div class="cell empty" id="t2-chieu"></div>
+          <div class="cell empty" id="t3-chieu"></div>
+          <div class="cell empty" id="t4-chieu"></div>
+          <div class="cell empty" id="t5-chieu"></div>
+          <div class="cell empty" id="t6-chieu"></div>
+          <div class="cell empty" id="t7-chieu"></div>
+        </div>
+      </div>
+
+      <div class="class-list-box">
+        <h3>Lớp học đang dạy</h3>
+        <ul class="class-list" id="class-list-container"></ul>
+      </div>
+
+      <div class="stats-box">
+        <div class="stat">
+          <div class="value" id="stat-count">0</div>
+          <div class="label">Lớp dạy</div>
+        </div>
+        <div class="stat">
+          <div class="value" id="stat-sessions">0</div>
+          <div class="label">Buổi dạy/tuần</div>
+        </div>
+        <div class="stat">
+          <div class="value" id="stat-days">0</div>
+          <div class="label">Ngày học/tuần</div>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="../../assets/js/teacher.js"></script>
+</body>
+
+</html>
