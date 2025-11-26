@@ -166,7 +166,8 @@ function createCourseNode(item) {
         <p class="sub">${item.schedule[0].room}</p>
 
         <p class="label">📚 Trạng thái:</p>
-        <span class="status ${item.status.toLowerCase()}">${item.status}</span>
+        <span class="status ${item.status === 'Hết chỗ' ? 'full' : 'available'}">${item.status}</span>
+
       </div>
     </div>
   </div>
