@@ -132,13 +132,6 @@ body {
   font-size: 13px;
 }
 
-.highlight {
-  color: #2f60ff;
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.stats,
 .tuition,
 .rank {
   background: white;
@@ -148,59 +141,7 @@ body {
   border: 1px solid #eee;
 }
 
-/* .stat-box {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
 
-.item {
-  background: #fafafa;
-  border-radius: 10px;
-  width: 23%;
-  text-align: center;
-  padding: 15px;
-  border: 1px solid #eee;
-} */
-
-.stat-box {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-.item {
-  background: #fafafa;
-  border-radius: 10px;
-  width: 23%;
-  /* 4 ô trên 1 hàng (desktop) */
-  text-align: center;
-  padding: 15px;
-  border: 1px solid #eee;
-  box-sizing: border-box;
-}
-
-/* Khi màn hình nhỏ hơn 900px (tablet trở xuống) */
-@media (max-width: 900px) {
-  .item {
-    width: 48%;
-    /* Mỗi ô chiếm 48% → 2 ô / hàng */
-  }
-}
-
-/* Khi màn hình rất nhỏ (điện thoại) */
-@media (max-width: 500px) {
-  .item {
-    width: 48%;
-    /* vẫn 2 ô / hàng, không cho xuống 1 ô */
-  }
-}
-
-
-.item h2 {
-  color: #2f60ff;
-  margin: 0;
-}
 
 .tuition-grid {
   display: flex;
