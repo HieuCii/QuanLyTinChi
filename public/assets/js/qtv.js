@@ -1451,3 +1451,8 @@ mainTabs.forEach(tab => {
         }
     });
 });
+
+
+function logout() {
+    if (confirm("Đăng xuất?")) { localStorage.removeItem("currentUser"); window.location.href = "/QuanLyTinChi/index.html"; }
+}
