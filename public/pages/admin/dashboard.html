@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản trị viên</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- css -->
+<link rel="stylesheet" href="../../assets/css/qtv.css">
+<link rel="stylesheet" href="../../assets/css/qtv1.css">
+
+
+</head>
+
+<body>
+  <!-- Thanh điều hướng -->
+  <header class="navbar">
+    <div class="logo">
+      🎓 Hệ thống Đăng ký Tín chỉ
+      <span>Trường Đại học X</span>
+    </div>
+
+    <nav class="menu">
+      <div class="menu-left">
+        <button class="main-tab active" data-tab="info">Quản lý tài khoản</button>
+        <button class="main-tab" data-tab="chuong_trinh_khung">Quản lý chương trình khung</button>
+      </div>
+      <div class="logout-btn">
+        <button class="fa-solid fa-right-from-bracket" onclick="logout()" title="Đăng xuất"></button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container" id="account-manager">
+    <!-- QUẢN LÝ TÀI KHOẢN -->
+
+    <div class="tab" id="accountTabNav">
+      <div class="slider"></div>
+      <button class="tab-btn active" data-tab="info_students">Quản lý Sinh viên</button>
+      <button class="tab-btn" data-tab="info_teachers">Quản lý Giảng viên</button>
+    </div>
+    <!-- Quản lý sinh viên -->
+    <section id="info_students" class="tab-content active">
+      <div class=" title">
+        <h2>Quản lý Sinh viên</h2>
+        <button id="btnAdd"><i class="fa fa-user-plus"></i> Thêm sinh viên</button>
+      </div>
+      <p>Thông tin và quản trị danh sách sinh viên</p>
+
+      <div class="stats">
+        <div class="card">
+          <h3>Tổng số sinh viên</h3>
+          <span id="totalStudent"></span>
+        </div>
+        <div class="card">
+          <h3>Đang hoạt động</h3>
+          <span id="activeStudent"></span>
+        </div>
+      </div>
+
+      <input type="text" id="searchInput" placeholder="Tìm kiếm sinh viên theo tên, mã SV, email, hoặc ngành học..." />
+
+      <table>
+        <thead>
+          <tr>
+            <th>Mã SV</th>
+            <th>Họ và tên</th>
+            <th>Email</th>
+            <th>Chuyên ngành</th>
+            <th>Năm học</th>
+            <th>Trạng thái</th>
+            <th>Thao tác</th>
+          </tr>
+        </thead>
+        <tbody id="studentTable">
+        </tbody>
+      </table>
+
+
+      <div id="modal" class="modal">
+        <div class="modal-content">
+          <h3>Thêm sinh viên</h3>
+          Mã sinh viên<input type="text" id="masv" placeholder="Mã sinh viên">
+          Họ tên<input type="text" id="fullname" placeholder="Họ tên">
+          Email<input type="email" id="email" placeholder="Email">
+          Chuyên ngành<input type="text" id="major" placeholder="Chuyên ngành">
+          Năm học<input type="text" id="year" placeholder="Năm học (1 - 4)">
+          <button onclick="addStudent()">Lưu</button>
+          <button class="cancel" onclick="closeModal()">Hủy</button>
+        </div>
+      </div>
+
+      <div id="editModal" class="modal">
+        <div class="modal-content">
+          <h3>Sửa thông tin sinh viên</h3>
+
+          Mã sinh viên <input type="text" id="edit_id" placeholder="Mã sinh viên">
+          Họ tên <input type="text" id="edit_name" placeholder="Họ tên">
+          Email <input type="email" id="edit_email" placeholder="Email">
+          Chuyên ngành <input type="text" id="edit_major" placeholder="Chuyên ngành">
+          Năm học <input type="text" id="edit_year" placeholder="Năm học (1 - 4)">
+          Trạng thái <select id="edit_active">
+            <option value="true">Đang học</option>
+            <option value="false">Nghỉ</option>
+          </select>
+
+          <button onclick="saveEdit()">Lưu thay đổi</button>
+          <button class="cancel" onclick="closeEditModal()">Hủy</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quản lý giảng viên -->
+    <section id="info_teachers" class="tab-content">
+      <div class=" title">
+        <h2>Quản lý Giảng viên</h2>
+        <button id="btnAddTeacher"><i class="fa fa-user-plus"></i> Thêm giảng viên</button>
+      </div>
+      <p>Thông tin và quản trị danh sách giảng viên</p>
+
+      <div class="stats">
+        <div class="card">
+          <h3>Tổng số giảng viên</h3>
+          <span id="totalTeacher"></span>
+        </div>
+        <div class="card">
+          <h3>Đang hoạt động</h3>
+          <span id="activeTeacher"></span>
+        </div>
+      </div>
+
+      <input type="text" id="searchTeacher" placeholder="Tìm kiếm giảng viên theo tên, mã GV, email, hoặc khoa..." />
+
+
+      <table>
+        <thead>
+          <tr>
+            <th>Mã GV</th>
+            <th>Họ và tên</th>
+            <th>Email</th>
+            <th>Khoa</th>
+            <th>Trạng thái</th>
+            <th>Thao tác</th>
+          </tr>
+        </thead>
+        <tbody id="teacherTable">
+        </tbody>
+      </table>
+
+
+      <div id="modalTeacher" class="modal">
+        <div class="modal-content">
+          <h3>Thêm giảng viên</h3>
+          Mã giảng viên<input type="text" id="magv" placeholder="Mã giảng viên">
+          Họ tên<input type="text" id="fullname_gv" placeholder="Họ tên">
+          Email<input type="email" id="email_gv" placeholder="Email">
+          Khoa<input type="text" id="faculty_gv" placeholder="Khoa">
+          <button type="submit" onclick="addTeacher()">Lưu</button>
+          <button class="cancel" onclick="closeTeacherModal()">Hủy</button>
+        </div>
+      </div>
+
+      <div id="editModalTeacher" class="modal">
+        <div class="modal-content">
+          <h3>Sửa thông tin giảng viên</h3>
+
+          Mã giảng viên <input type="text" id="edit_id_gv" placeholder="Mã giảng viên">
+          Họ tên <input type="text" id="edit_name_gv" placeholder="Họ tên">
+          Email <input type="email" id="edit_email_gv" placeholder="Email">
+          Khoa<input type="text" id="edit_faculty_gv" placeholder="Khoa">
+          Trạng thái <select id="edit_active_gv">
+            <option value="true">Đang dạy</option>
+            <option value="false">Nghỉ</option>
+          </select>
+
+          <button onclick="saveEditTeacher()">Lưu thay đổi</button>
+          <button class="cancel" onclick="closeEditTeacher()">Hủy</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <!-- QUẢN LÝ CHƯƠNG TRÌNH KHUNG -->
+  <main class="container" id="chuong_trinh_khung" >
+    <section class="tab-content">
+      <div class="tab-navigation" id="mainTabNav">
+        <button class="tab-btn-ctk active" data-tab="tab-ctk">
+          <i class="fa-solid fa-book"></i> Chương trình khung
+        </button>
+        <div class="slider-ctk"></div>
+
+        <button class="tab-btn-ctk" data-tab="tab-hp">
+          <i class="fa-solid fa-list-check"></i> Quản lý học phần
+        </button>
+
+        <button class="tab-btn-ctk" data-tab="tab-hocphi">
+          <i class="fa-solid fa-coins"></i> Quản lý học phí
+        </button>
+
+      </div>
+
+      <div class="tab-content-container">
+        <!-- Chương trình khung -->
+        <section id="tab-ctk" class="tab-pane-ctk active">
+          <div class="ctk-header">
+            <h2>Thiết lập Chương trình khung</h2>
+            <button id="btnAddCTK">Thêm chương trình khung mới</button>
+          </div>
+
+          <p>Quản lý môn học bắt buộc theo từng ngành và học kỳ</p>
+
+          <div class="ctk-filter">
+            <div>
+              <label><b>Khoa:</b></label>
+              <select id="filterKhoa">
+                <option value=""> Chọn khoa </option>
+                <option value="CNTT">Công nghệ thông tin</option>
+                <option value="QTKD">Quản trị kinh doanh</option>
+                <option value="KT">Kế toán</option>
+              </select>
+            </div>
+
+            <div>
+              <label><b>Ngành:</b></label>
+              <select id="filterNganh">
+                <option value=""> Chọn ngành </option>
+              </select>
+            </div>
+
+            <div>
+              <label><b>Học kỳ:</b></label>
+              <select id="filterHocKy">
+                <option value=""> Chọn học kỳ </option>
+                <option value="1">Học kỳ 1</option>
+                <option value="2">Học kỳ 2</option>
+                <option value="3">Học kỳ 3</option>
+                <option value="4">Học kỳ 4</option>
+                <option value="5">Học kỳ 5</option>
+                <option value="6">Học kỳ 6</option>
+                <option value="7">Học kỳ 7</option>
+                <option value="8">Học kỳ 8</option>
+              </select>
+            </div>
+
+            <button id="btnFilterCTK" class="btn-filter">Lọc</button>
+          </div>
+
+          <!-- Bảng kết quả -->
+          <table class="table-ctk" id="tableCTK">
+            <thead>
+              <tr>
+                <th>Mã CTK</th>
+                <th>Khoa</th>
+                <th>Ngành</th>
+                <th>Học kỳ</th>
+                <th>Số học phần</th>
+                <th>Hành động</th>
+              </tr>
+            </thead>
+            <tbody id="ctkResult"></tbody>
+          </table>
+
+
+          <div id="modalCTK" class="modal">
+            <div class="modal-content">
+              <h2>Thêm chương trình khung</h2>
+              <b>Mã chương trình khung</b> <input type="text" id="maCTK_ctkNew"
+                placeholder="Nhập mã chương trình khung">
+              <b>Khoa</b>
+              <select id="khoa_ctkNew">
+                <option value=""></option>
+                <option value="CNTT">Công nghệ thông tin</option>
+                <option value="QTKD">Quản trị kinh doanh</option>
+                <option value="KT">Kế toán</option>
+              </select>
+              <b>Học kỳ</b>
+              <select id="hocKy_ctkNew">
+                <option value=""></option>
+                <option value="1">Học kỳ 1</option>
+                <option value="2">Học kỳ 2</option>
+                <option value="3">Học kỳ 3</option>
+                <option value="4">Học kỳ 4</option>
+                <option value="5">Học kỳ 5</option>
+                <option value="6">Học kỳ 6</option>
+                <option value="7">Học kỳ 7</option>
+                <option value="8">Học kỳ 8</option>
+              </select>
+              <b>Chuyên ngành</b>
+              <select id="chuyenNganh_ctkNew">
+                <option value=""></option>
+              </select>
+              <hr>
+              <button onclick="addCTK()">Tiếp tục</button>
+              <button class="cancel" onclick="closeModalCTK()">Hủy</button>
+            </div>
+
+          </div>
+
+          <div id="addHP_ctk" class="modal">
+            <div class="modal-content">
+              <h3>Thêm học phần
+                <hr><span id="displaySemester" style="color: #007bff; font-size: 0.8em;"></span>
+              </h3>
+
+              <div id="hocPhanWrapper">
+                <h4 style="margin: 0 0 10px 0; color: #555;">Học phần chính</h4>
+                Mã lớp HP <input type="text" id="malophp_ctk">
+                Tên môn học <input type="text" id="tenmh_ctk">
+                <div style="display:flex; gap:10px;">
+                  <div style="flex:1">Số TC <input type="number" id="sotc_ctk"></div>
+                  <div style="flex:1">Số Tiết <input type="number" id="sotiet_ctk"></div>
+                </div>
+
+                <label>Loại học phần:</label>
+                <div class="toggle-group">
+                  <input type="radio" id="bb_0_true" name="batbuoc_0" value="true" checked>
+                  <label for="bb_0_true">Bắt buộc</label>
+                  <input type="radio" id="bb_0_false" name="batbuoc_0" value="false">
+                  <label for="bb_0_false">Tự chọn</label>
+                  <div class="slider-ctk"></div>
+                </div>
+
+                <div id="hocphanContainer"></div>
+                <button id="btnAddHocPhan" class="add-hocphan">+ Thêm học phần</button>
+              </div>
+
+              <button id="btnSaveHocPhan" onclick="saveHocPhan()">Lưu học phần</button>
+              <button class="cancel" onclick="closeAddHP()">Hủy</button>
+            </div>
+          </div>
+
+          <div id="modalDetailCTK" class="modal" style="display: none;">
+            <div class="modal-box detail-box" style="padding-bottom: 30px;">
+
+              <div class="modal-header">
+                <h3><i class="fa-solid fa-book-open"></i> Chi tiết Chương trình khung</h3>
+                <button onclick="closeDetailCTK()" class="btn-close" title="Đóng cửa sổ">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+
+              <div class="info-group">
+                <div class="info-item"><strong>Mã CTK:</strong> <span id="detail_maCTK"
+                    class="highlight-text">...</span>
+                </div>
+                <div class="info-item"><strong>Khoa:</strong> <span id="detail_khoa">...</span></div>
+                <div class="info-item"><strong>Ngành:</strong> <span id="detail_nganh">...</span></div>
+                <div class="info-item"><strong>Học kỳ:</strong> <span id="detail_hocky">...</span></div>
+              </div>
+
+              <h4 style="margin: 15px 0 10px 0; border-bottom: 2px solid #ddd; padding-bottom: 5px;">Danh sách học phần
+              </h4>
+
+              <div class="table-scroll">
+                <table class="table-content full-width">
+                  <thead>
+                    <tr>
+                      <th>Mã HP</th>
+                      <th>Tên Môn Học</th>
+                      <th class="text-center">Số TC</th>
+                      <th class="text-center">Số Tiết</th>
+                      <th class="text-center">Loại</th>
+                    </tr>
+                  </thead>
+                  <tbody id="detail_body">
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+          </div>
+
+      </div>
+    </section>
+
+    <section id="tab-hp" class="tab-pane-ctk">
+      <div id="mh-wrapper">
+
+        <h2>Danh sách Học phần</h2>
+
+        <div style="margin-bottom: 20px; display: flex; gap: 10px;">
+          <input type="text" id="mh_searchMonHoc" placeholder="Tìm kiếm môn học..."
+            style="padding: 10px; border: 1px solid #ddd; border-radius: 4px; width: 300px;">
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Mã HP</th>
+              <th>Tên Học Phần</th>
+              <th style="text-align: center;">Số TC</th>
+              <th style="text-align: center;">Số Lớp Đã Mở</th>
+              <th>Hành động</th>
+            </tr>
+          </thead>
+          <tbody id="mh_courseTable">
+          </tbody>
+        </table>
+
+        <div id="mh_modalClassManager" class="modal" style="display: none;">
+          <div class="modal-box" style="width: 900px; max-width: 95%;">
+
+            <div class="modal-header"
+              style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 15px;">
+              <h3 style="margin:0">Quản lý lớp: <span id="mh_currentSubjectName" style="color: #007bff;">...</span></h3>
+              <button onclick="mh_closeModal()" class="btn-close" title="Đóng"><i
+                  class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div
+              style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #e9ecef;">
+              <h4 id="mh_formTitle" style="margin-bottom: 20px; color: #555;">+ Mở lớp mới</h4>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+                <div class="form-group">
+                  <label style="font-size: 12px; font-weight: bold;">Mã lớp</label>
+                  <input type="text" id="mh_inpTenLop" placeholder="VD: Java_01"
+                    style="width: 100%; padding: 8px; box-sizing: border-box;">
+                </div>
+                <div class="form-group">
+                  <label style="font-size: 12px; font-weight: bold;">Phòng học</label>
+                  <input type="text" id="mh_inpPhong" placeholder="VD: A201"
+                    style="width: 100%; padding: 8px; box-sizing: border-box;">
+                </div>
+                <div class="form-group">
+                  <label style="font-size: 12px; font-weight: bold;">Giảng viên</label>
+                  <input type="text" id="mh_inpGV" placeholder="Họ tên GV"
+                    style="width: 100%; padding: 8px; box-sizing: border-box;">
+                </div>
+              </div>
+
+              <div class="form-grid" style="grid-template-columns: 1fr 1fr 1fr;">
+                <div class="form-group">
+                  <label>Sĩ số</label>
+                  <input type="number" id="mh_inpSiSo" placeholder="0">
+                </div>
+                <div class="form-group">
+                  <label>Tiết Bắt đầu</label>
+                  <input type="number" id="mh_inpTietBD" placeholder="1-12" min="1" max="12">
+                </div>
+                <div class="form-group">
+                  <label>Tiết Kết thúc</label>
+                  <input type="number" id="mh_inpTietKT" placeholder="1-12" min="1" max="12">
+                </div>
+              </div>
+
+              <div style="text-align: right;">
+                <button id="mh_btnCancelEdit" onclick="mh_cancelEditMode()"
+                  style="display: none; background: #6c757d; color: white; border: none; padding: 8px 15px; border-radius: 4px; margin-right: 5px; cursor: pointer;">Hủy
+                  sửa</button>
+                <button id="mh_btnSaveClass" onclick="mh_handleSaveClass()" class="modal-btn btn-add"
+                  style="width: auto; padding: 8px 20px;">Lưu lớp học</button>
+              </div>
+            </div>
+
+            <h4 style="margin-bottom: 10px; margin-left: 30px;">Danh sách lớp đã tạo</h4>
+            <div class="table-scroll" style="max-height: 300px; border: 1px solid #ddd;">
+              <table class="full-width">
+                <thead>
+                  <tr>
+                    <th>Mã Lớp</th>
+                    <th>Phòng</th>
+                    <th>Giảng viên</th>
+                    <th class="text-center">Tiết học</th>
+                    <th class="text-center">Sĩ số (ĐK/Tổng)</th>
+                    <th class="text-center">Trạng thái</th>
+                    <th>Hành động</th>
+                  </tr>
+                </thead>
+                <tbody id="mh_classTableBody">
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- QUẢN LÝ HỌC PHÍ -->
+    <section id="tab-hocphi" class="tab-pane-ctk">
+      <h2>Quản Lý Học Phí Sinh Viên</h2>
+
+      <div class=" stats-row">
+        <div class="card">
+          <div class="card-title">Học phí mặc định</div>
+          <div class="card-value green" id="defaultFeeDisplay"></div>
+          <div>Mỗi tín chỉ</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Tổng doanh thu</div>
+          <div class="card-value blue" id="totalRevenue"></div>
+          <div>Từ sinh viên</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Tổng tín chỉ</div>
+          <div class="card-value orange" id="totalCredits"></div>
+          <div>Tín chỉ</div>
+        </div>
+      </div>
+
+      <div class="default-fee-box">
+        <b>Thay đổi học phí mặc định:</b>
+        <input type="number" id="defaultFeeInput" value="500000" min="0" />
+        <span>VNĐ / tín chỉ</span>
+        <button class="update-btn" id="updateBtn">Cập nhật</button>
+      </div>
+
+      <div class="filter-box">
+        <b>Lọc theo chuyên ngành:</b>
+        <select id="majorFilter">
+          <option value="all">Tất cả</option>
+          <option value="Mạng máy tính">Mạng máy tính</option>
+          <option value="Công nghệ phần mềm">Công nghệ phần mềm</option>
+          <option value="Hệ thống thông tin">Hệ thống thông tin</option>
+          <option value="Khoa học dữ liệu">Khoa học dữ liệu</option>
+          <option value="An ninh mạng">An ninh mạng</option>
+          <option value="IoT & Embedded">IoT & Embedded</option>
+        </select>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Họ tên</th>
+            <th>Chuyên ngành</th>
+            <th>Lớp</th>
+            <th>Tín chỉ</th>
+            <th>Tiền / TC</th>
+            <th>Tổng học phí</th>
+            <th>Đã đóng</th>
+            <th>Trạng thái</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+      </div>
+    </section>
+
+    </div>
+    </section>
+
+  </main>
+
+  <script src="../../assets/js/qtv.js"></script>
+  <div id="toast-container"></div>
+
+</body>
+
+</html>
