@@ -4,19 +4,10 @@
 // const mainTabs = document.querySelectorAll(".main-tab");
 const allSections = document.querySelectorAll("main .tab-content");
 
-
-
-
-
-
-
-
 // ===========================
 // TAB CON (Sinh viên / Giảng viên)
 // ===========================
 const subTabs = document.querySelectorAll(".tab-btn");
-
-
 
 // ===========================
 // TAB CON (Sinh viên / Giảng viên)
@@ -93,8 +84,6 @@ function renderStudents(list = students) {
   updateStats();
 }
 
-
-
 /* ============================
    CẬP NHẬT THỐNG KÊ
 ============================ */
@@ -104,7 +93,6 @@ function updateStats() {
   document.getElementById("activeStudent").innerText =
     students.filter(s => s.active).length;
 }
-
 
 
 /* ============================
@@ -123,8 +111,6 @@ document.getElementById("searchInput").addEventListener("input", function () {
 
   renderStudents(filtered);
 });
-
-
 
 /* ============================
    THÊM SINH VIÊN
@@ -207,8 +193,6 @@ function saveEdit() {
   renderStudents();
 }
 
-
-
 /* ============================
    XÓA SINH VIÊN
 ============================ */
@@ -219,14 +203,6 @@ function deleteStudent(index) {
     renderStudents();
   }
 }
-
-
-
-/* ============================
-   KHỞI TẠO KHI VÀO TRANG
-============================ */
-
-
 
 /* ============================================
    DỮ LIỆU GIẢNG VIÊN MẪU
@@ -393,87 +369,11 @@ window.onload = () => {
   renderTeachers();
 };
 
-// CHƯƠNG TRÌNH KHUNG
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // QUẢN LÝ CHƯƠNG TRÌNH KHUNG
 
 let tempCTK = {};
-
-// // Lấy các phần tử cần thiết
-// const tabNav = document.getElementById('mainTabNav');
-// const slider_ctk = tabNav.querySelector('.slider-ctk');
-// const allButtons = tabNav.querySelectorAll('.tab-btn-ctk');
-
-// // HÀM 1: Cập nhật vị trí thanh Slider
-// function updateSliderPosition(element) {
-//   // element.offsetLeft: Vị trí của nút so với lề trái
-//   // element.offsetWidth: Chiều rộng của nút
-//   slider_ctk.style.left = element.offsetLeft + "px";
-//   slider_ctk.style.width = element.offsetWidth + "px";
-// }
-
-// // Khởi tạo ban đầu (cho tab đang active mặc định)
-// const activeBtn = tabNav.querySelector('.tab-btn-ctk.active');
-// if (activeBtn) updateSliderPosition(activeBtn);
-
-// // HÀM 2: Xử lý sự kiện chuyển Tab (Dùng Event Delegation)
-// tabNav.addEventListener('click', function (e) {
-//   // Tìm nút tab gần nhất mà user click vào
-//   const clickedBtn = e.target.closest('.tab-btn-ctk');
-
-//   // Nếu không bấm trúng nút hoặc bấm trúng nút đang active rồi thì thôi
-//   if (!clickedBtn || clickedBtn.classList.contains('active')) return;
-
-//   // A. XỬ LÝ GIAO DIỆN (NÚT)
-//   // 1. Xóa active cũ
-//   tabNav.querySelector('.tab-btn-ctk.active')?.classList.remove('active');
-//   // 2. Thêm active mới
-//   clickedBtn.classList.add('active');
-//   // 3. Di chuyển slider
-//   updateSliderPosition(clickedBtn);
-
-//   // B. XỬ LÝ NỘI DUNG (CONTENT)
-//   // 1. Ẩn nội dung cũ
-//   document.querySelector('.tab-pane-ctk.active')?.classList.remove('active');
-
-//   // 2. Hiện nội dung mới dựa trên data-tab
-//   const targetId = clickedBtn.dataset.tab; // Lấy giá trị "tab-ctk", "tab-hp"...
-//   const targetContent = document.getElementById(targetId);
-
-//   if (targetContent) {
-//     targetContent.classList.add('active');
-
-//     // C. (NÂNG CAO) GỌI HÀM RIÊNG CỦA TỪNG TAB
-//     // Ví dụ: Bấm sang tab học phí mới bắt đầu tính tiền
-//     if (targetId === 'tab-hocphi') {
-//       console.log("Đã chuyển sang tab học phí, đang tính toán lại...");
-//       // calculateTuition(); // Gọi hàm tính học phí của bạn ở đây
-//     }
-//   }
-// });
-
-// // HÀM XỬ LÝ KHI RESIZE CỬA SỔ (Để slider không bị lệch)
-// window.addEventListener('resize', () => {
-//   const currentActive = tabNav.querySelector('.tab-btn-ctk.active');
-//   if (currentActive) updateSliderPosition(currentActive);
-// });
 
 // HAM THONG BAO LOI
 function showToast({ title, message, type = 'success' }) {
@@ -1451,7 +1351,6 @@ mainTabs.forEach(tab => {
         }
     });
 });
-
 
 function logout() {
     if (confirm("Đăng xuất?")) { localStorage.removeItem("currentUser"); window.location.href = "/QuanLyTinChi/index.html"; }
